@@ -1,5 +1,6 @@
-package com.trivento.deventerkroegenapp;
+package com.trivento.deventerkroegenapp.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,9 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.trivento.deventerkroegenapp.R;
+import com.trivento.deventerkroegenapp.fragments.KroegListFragment;
+import com.trivento.deventerkroegenapp.model.KroegData;
 
 public class MainKroegListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private KroegData data = KroegData.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +30,6 @@ public class MainKroegListActivity extends AppCompatActivity
         setContentView(R.layout.activity_main_kroeg_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +39,13 @@ public class MainKroegListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Resources res = getResources();
+        String username = res.getString(R.string.user_not_logged_in);
+        //TODO check if user logged in here and edit username
+        //WARNING https://code.google.com/p/android/issues/detail?id=190226 Headerview may not work as expected...
+        TextView tvNavUser = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_nav_user);
+        tvNavUser.setText(username);
     }
 
     @Override
@@ -79,20 +85,6 @@ public class MainKroegListActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_action_settings"
+            android:title="@string/action_settings" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_action_login"
+            android:title="@string/action_login" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/title_category">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+            <group android:checkableBehavior="single">
+                <!-- TODO edit this programmatically, not manually -->
+                <item
+                    android:id="@+id/nav_cat_1"
+                    android:title="Categorie 1" />
+                <item
+                    android:id="@+id/nav_cat_2"
+                    android:title="Categorie 2" />
+                <item
+                    android:id="@+id/nav_cat_3"
+                    android:title="Categorie 3" />
+                <item
+                    android:id="@+id/nav_cat_4"
+                    android:title="Categorie 4" />
+                <item
+                    android:id="@+id/nav_cat_5"
+                    android:title="Categorie 5" />
+                <item
+                    android:id="@+id/nav_cat_6"
+                    android:title="Categorie 6" />
+                <item
+                    android:id="@+id/nav_cat_7"
+                    android:title="Categorie 7" />
+            </group>
         </menu>
     </item>
 

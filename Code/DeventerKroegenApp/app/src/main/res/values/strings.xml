@@ -4,5 +4,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="title_category">Categorieën</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="action_login">Log in</string>
+    <string name="user_not_logged_in">Gebruiker niet ingelogd</string>
+    <string name="user">%1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="link_placeholder"><a href="http://www.deheks.nl/">http://www.deheks.nl/</a></string>
+    <string name="hours_placeholder">&#8226; Maandag: 14:00 - 02:00 \n&#8226; Dinsdag: 14:00 - 02:00 \n&#8226; Woensdag: 14:00 - 02:00 \n&#8226; Donderdag: 14:00 - 02:00 \n&#8226; Vrijdag: 14:00 - 03:00 \n&#8226; Zaterdag: 14:00 - 03:00 \n&#8226; Zondag: 14:00 - 02:00</string>
+    <string name="title_activity_kroeg_detail">KroegDetailActivity</string>
 </resources>
