@@ -1,11 +1,12 @@
 package com.trivento.deventerkroegenapp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Sliomere on 12/05/2016.
  */
-public class Kroeg {
+public class Kroeg implements Serializable{
 
     private String name;
     private float rating;

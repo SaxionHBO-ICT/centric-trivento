@@ -18,6 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.KroegDetailActivity"
+            android:label="@string/title_activity_kroeg_detail"
+            android:parentActivityName=".activities.MainKroegListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.trivento.deventerkroegenapp.activities.MainKroegListActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -32,4 +32,14 @@
         android:rating="2.5"
         android:progressTint="#f99d2c" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Midden in het oude centrum, achter de Waag, waar de heks ooit tegen de muur is gevlogen, ligt het mooiste speciaal bierencafé van Deventer."
+        android:id="@+id/tv_desc_short"
+        android:layout_below="@+id/rb_li_rating"
+        android:layout_toEndOf="@+id/imageView"
+        android:ellipsize="end"
+        android:maxLines="3"/>
+
 </RelativeLayout>
