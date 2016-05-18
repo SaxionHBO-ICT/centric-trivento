@@ -27,6 +27,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.trivento.deventerkroegenapp.activities.MainKroegListActivity" />
         </activity>
+        <activity
+            android:name=".activities.LogInActivity"
+            android:label="@string/title_activity_log_in"
+            android:parentActivityName=".activities.MainKroegListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.trivento.deventerkroegenapp.activities.MainKroegListActivity" />
+        </activity>
     </application>
 
 </manifest>
