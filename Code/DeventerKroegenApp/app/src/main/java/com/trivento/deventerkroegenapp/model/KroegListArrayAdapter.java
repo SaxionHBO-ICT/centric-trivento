@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.trivento.deventerkroegenapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,10 +30,10 @@ public class KroegListArrayAdapter extends ArrayAdapter<Kroeg>{
         View view = inflater.inflate(R.layout.list_item_kroeg, null);
 
         TextView tvName = (TextView) view.findViewById(R.id.tv_li_name);
-        tvName.setText(kroegen.get(position).getName());
+        tvName.setText(kroegen.get(position).getNaam());
 
         RatingBar rbRating = (RatingBar) view.findViewById(R.id.rb_li_rating);
-        rbRating.setRating(kroegen.get(position).getRating());
+        rbRating.setRating(kroegen.get(position).getKroeg_id()/2);
 
         return view;
     }

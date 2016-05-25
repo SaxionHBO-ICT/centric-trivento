@@ -1,5 +1,6 @@
 package com.trivento.deventerkroegenapp.model;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -15,10 +16,9 @@ public class KroegData {
 
     private KroegData(){
         for(int i = 0; i < 10; i++){
-            Kroeg kroeg = new Kroeg("Kroeg " + i);
+            Kroeg kroeg = new Kroeg(i, "Kroeg " + i, "Adres " + i, "Openingstijden " + i, "Desc " + i, "Avatar", "Categorie");
             float rating = (i)/2F;
             Log.d("KROEG", "rating: " + rating);
-            kroeg.setRating(rating);
             kroegen.add(kroeg);
         }
     }
