@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class KroegListArrayAdapter extends ArrayAdapter<Kroeg>{
 
-    private List<Kroeg> kroegen;
+    public List<Kroeg> kroegen;
 
     public KroegListArrayAdapter(Context context, int resource, List<Kroeg> objects) {
         super(context, resource, objects);

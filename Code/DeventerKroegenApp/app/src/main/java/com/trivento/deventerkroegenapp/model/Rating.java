@@ -9,6 +9,9 @@ public class Rating {
     private int gebruiker_id;
     private int rating;
 
+    public Rating() {
+    }
+
     public Rating(int kroeg_id, int gebruiker_id, int rating) {
         this.kroeg_id = kroeg_id;
         this.gebruiker_id = gebruiker_id;

@@ -19,7 +19,7 @@ public class MainKroegListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private KroegData data;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +69,8 @@ public class MainKroegListActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_cat_1:
+                KroegData.searchData(getString(R.string.cat_1));
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

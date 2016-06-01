@@ -15,6 +15,8 @@ public class Gebruiker {
     private String mail;
     private String wachtwoord;
 
+    public Gebruiker(){}
+
     public Gebruiker(String gebruiker_id, String voornaam, String achternaam, String adres, String postcode, String woonplaats, String land, String mail, String wachtwoord) {
         this.gebruiker_id = gebruiker_id;
         this.voornaam = voornaam;

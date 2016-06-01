@@ -17,7 +17,6 @@ import com.trivento.deventerkroegenapp.model.KroegListArrayAdapter;
 public class KroegListFragment extends ListFragment {
 
     public static KroegListArrayAdapter adapter;
-    private Callbacks activity;
 
     public KroegListFragment() {
     }
@@ -49,9 +48,8 @@ public class KroegListFragment extends ListFragment {
         super.onAttach(activity);
     }
 
-    public interface Callbacks{
-        //TODO add item select method parameters
-        void onItemSelected();
+    public static void notifyDataSetChanged() {
+        adapter.notifyDataSetChanged();
     }
 
 }

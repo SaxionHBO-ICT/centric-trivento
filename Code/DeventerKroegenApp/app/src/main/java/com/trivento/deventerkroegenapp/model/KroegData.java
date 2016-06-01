@@ -1,7 +1,6 @@
 package com.trivento.deventerkroegenapp.model;
 
-import android.content.Context;
-import android.util.Log;
+import com.trivento.deventerkroegenapp.connections.ConnectionTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +14,17 @@ public class KroegData {
     public static List<Kroeg> kroegen = new ArrayList<>();
 
     private KroegData(){
-        for(int i = 0; i < 10; i++){
-            Kroeg kroeg = new Kroeg(i, "Kroeg " + i, "Adres " + i, "Openingstijden " + i, "Desc " + i, "Avatar", "Categorie");
-            float rating = (i)/2F;
-            Log.d("KROEG", "rating: " + rating);
-            kroegen.add(kroeg);
-        }
+        searchData();
+    }
+
+    public static void searchData(String category){
+        ConnectionTask connectionTask = new ConnectionTask(kroegen);
+        connectionTask.execute(category);
+    }
+
+    public void searchData(){
+        ConnectionTask connectionTask = new ConnectionTask(kroegen);
+        connectionTask.execute();
     }
 
     public static KroegData getInstance() {

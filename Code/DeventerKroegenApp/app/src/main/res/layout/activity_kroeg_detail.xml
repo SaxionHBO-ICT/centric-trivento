@@ -11,13 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:fitsSystemWindows="true"
+        android:background="?attr/colorPrimary"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:expandedTitleTextAppearance="@style/TextAppearance.ExpandedTitle">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

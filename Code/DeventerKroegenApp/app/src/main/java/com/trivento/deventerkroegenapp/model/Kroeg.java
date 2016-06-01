@@ -52,4 +52,16 @@ public class Kroeg implements Serializable{
     public String getCategorie() {
         return categorie;
     }
+
+    @Override
+    public String toString() {
+        return "Kroeg{" +
+                "kroeg_id=" + kroeg_id +
+                ", naam='" + naam + '\'' +
+                ", adres='" + adres + '\'' +
+                ", openingstijden='" + openingstijden + '\'' +
+                ", beschrijving='" + beschrijving + '\'' +
+                ", categorie='" + categorie + '\'' +
+                '}';
+    }
 }
