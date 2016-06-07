@@ -121,11 +121,17 @@
         android:layout_below="@+id/line4"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/iv_maps_placeholder"
         android:src="@drawable/maps_placeholder"
-        android:layout_below="@+id/space5"/>
+        android:layout_below="@+id/space5"/>-->
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/space5"
+        android:id="@+id/fragment_maps"
+        android:name="com.google.android.gms.maps.MapFragment"/>
 
 </RelativeLayout>

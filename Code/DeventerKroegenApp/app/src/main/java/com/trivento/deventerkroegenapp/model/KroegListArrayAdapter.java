@@ -29,11 +29,15 @@ public class KroegListArrayAdapter extends ArrayAdapter<Kroeg>{
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.list_item_kroeg, null);
 
+        Kroeg kroeg = kroegen.get(position);
+
         TextView tvName = (TextView) view.findViewById(R.id.tv_li_name);
-        tvName.setText(kroegen.get(position).getNaam());
+        tvName.setText(kroeg.getNaam());
+        TextView tvDescShort = (TextView) view.findViewById(R.id.tv_desc_short);
+        tvDescShort.setText(kroeg.getBeschrijving());
 
         RatingBar rbRating = (RatingBar) view.findViewById(R.id.rb_li_rating);
-        rbRating.setRating(kroegen.get(position).getKroeg_id()/2);
+        rbRating.setRating(kroeg.getKroeg_id()/2);
 
         return view;
     }

@@ -1,4 +1,4 @@
-package com.trivento.deventerkroegenapp.connections;
+package com.trivento.deventerkroegenapp.tasks;
 
 import android.os.AsyncTask;
 
@@ -14,7 +14,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -62,8 +61,9 @@ public class ConnectionTask extends AsyncTask<String, Void, Void> {
                     String beschrijving = jsonObject.getString("beschrijving");
                     String avatar = jsonObject.getString("avatar");
                     String categorie = jsonObject.getString("categorie");
+                    String urlString = jsonObject.getString("url");
 
-                    Kroeg kroeg = new Kroeg(kroegID, naam, adres, openingstijden, beschrijving, avatar, categorie);
+                    Kroeg kroeg = new Kroeg(kroegID, naam, adres, openingstijden, beschrijving, urlString, avatar, categorie);
                     kroegen.add(kroeg);
                 }
             }

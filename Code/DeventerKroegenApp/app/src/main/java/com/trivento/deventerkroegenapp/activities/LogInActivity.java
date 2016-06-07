@@ -1,13 +1,16 @@
 package com.trivento.deventerkroegenapp.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.trivento.deventerkroegenapp.R;
+import com.trivento.deventerkroegenapp.tasks.LoginTask;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +24,12 @@ public class LogInActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        boolean loggedIn = checkLogin();
+        if(loggedIn){
+            Toast.makeText(LogInActivity.this, "Er is al ingelogd", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         final EditText etUsername = (EditText) findViewById(R.id.et_username);
         final EditText etPassword = (EditText) findViewById(R.id.et_password);
 
@@ -29,7 +38,11 @@ public class LogInActivity extends AppCompatActivity {
             btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO check password & username
+                    String username = etUsername.getText().toString();
+                    String password = etPassword.getText().toString();
+
+                    LoginTask loginTask = new LoginTask(getApplicationContext());
+                    loginTask.execute(username, password);
                 }
             });
         }
@@ -37,29 +50,8 @@ public class LogInActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static String md5(final String s) {
-        final String MD5 = "MD5";
-        try {
-            // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest
-                    .getInstance(MD5);
-            digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
-
-            // Create Hex String
-            StringBuilder hexString = new StringBuilder();
-            for (byte aMessageDigest : messageDigest) {
-                String h = Integer.toHexString(0xFF & aMessageDigest);
-                while (h.length() < 2)
-                    h = "0" + h;
-                hexString.append(h);
-            }
-            return hexString.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
+    private boolean checkLogin() {
+        //TODO add check to sharedPrefs for login
+        return false;
     }
-
 }

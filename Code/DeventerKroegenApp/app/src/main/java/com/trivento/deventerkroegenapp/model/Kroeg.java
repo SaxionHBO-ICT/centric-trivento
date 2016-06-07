@@ -14,8 +14,9 @@ public class Kroeg implements Serializable{
     private String beschrijving;
     private String avatar;
     private String categorie;
+    private String url;
 
-    public Kroeg(int kroeg_id, String naam, String adres, String openingstijden, String beschrijving, String avatar, String categorie) {
+    public Kroeg(int kroeg_id, String naam, String adres, String openingstijden, String beschrijving, String url, String avatar, String categorie) {
         this.kroeg_id = kroeg_id;
         this.naam = naam;
         this.adres = adres;
@@ -23,6 +24,7 @@ public class Kroeg implements Serializable{
         this.beschrijving = beschrijving;
         this.avatar = avatar;
         this.categorie = categorie;
+        this.url = url;
     }
 
     public int getKroeg_id() {
@@ -63,5 +65,9 @@ public class Kroeg implements Serializable{
                 ", beschrijving='" + beschrijving + '\'' +
                 ", categorie='" + categorie + '\'' +
                 '}';
+    }
+
+    public String getURL() {
+        return url;
     }
 }

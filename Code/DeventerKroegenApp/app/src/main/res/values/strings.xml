@@ -20,5 +20,11 @@
     <string name="hours_placeholder">&#8226; Maandag: 14:00 - 02:00 \n&#8226; Dinsdag: 14:00 - 02:00 \n&#8226; Woensdag: 14:00 - 02:00 \n&#8226; Donderdag: 14:00 - 02:00 \n&#8226; Vrijdag: 14:00 - 03:00 \n&#8226; Zaterdag: 14:00 - 03:00 \n&#8226; Zondag: 14:00 - 02:00</string>
     <string name="title_activity_kroeg_detail">KroegDetailActivity</string>
     <string name="title_activity_log_in">LogInActivity</string>
-    <string name="cat_1">Bier</string>
+    <string name="cat_2">Bier</string>
+    <string name="categorie_1">Alles</string>
+    <string name="categorie_2">Bier</string>
+    <string name="categorie_3">Eetcafe</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

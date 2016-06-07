@@ -14,17 +14,17 @@
 
     <item android:title="@string/title_category">
         <menu>
-            <group android:checkableBehavior="single">
+            <group android:checkableBehavior="single" android:id="@+id/categories">
                 <!-- TODO edit this programmatically, not manually -->
-                <item
+               <!--<item
                     android:id="@+id/nav_cat_1"
-                    android:title="Categorie 1" />
-                <item
+                    android:title="@string/categorie_1" />
+               <item
                     android:id="@+id/nav_cat_2"
-                    android:title="Categorie 2" />
+                    android:title="@string/categorie_2" />
                 <item
                     android:id="@+id/nav_cat_3"
-                    android:title="Categorie 3" />
+                    android:title="@string/categorie_3" />
                 <item
                     android:id="@+id/nav_cat_4"
                     android:title="Categorie 4" />
@@ -36,7 +36,7 @@
                     android:title="Categorie 6" />
                 <item
                     android:id="@+id/nav_cat_7"
-                    android:title="Categorie 7" />
+                    android:title="Categorie 7" />-->
             </group>
         </menu>
     </item>

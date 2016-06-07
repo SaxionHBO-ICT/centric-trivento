@@ -1,6 +1,6 @@
 package com.trivento.deventerkroegenapp.model;
 
-import com.trivento.deventerkroegenapp.connections.ConnectionTask;
+import com.trivento.deventerkroegenapp.tasks.ConnectionTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class KroegData {
         connectionTask.execute(category);
     }
 
-    public void searchData(){
+    public static void searchData(){
         ConnectionTask connectionTask = new ConnectionTask(kroegen);
         connectionTask.execute();
     }
