@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.trivento.deventerkroegenapp.activities.LogInActivity;
+
 import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +74,9 @@ public class LoginTask extends AsyncTask<String, Void, Boolean>{
         if(!accepted){
             Toast.makeText(context, "Username/password incorrect", Toast.LENGTH_LONG).show();
         } else {
-            //TODO save login
+            Toast.makeText(context, "Login complete", Toast.LENGTH_SHORT).show();
+            //TODO implement this when login storage is finished
+            //((LogInActivity)context).finish();
         }
     }
 

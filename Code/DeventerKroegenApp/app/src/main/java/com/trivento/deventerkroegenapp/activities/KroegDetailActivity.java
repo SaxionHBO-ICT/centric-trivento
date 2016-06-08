@@ -87,15 +87,21 @@ public class KroegDetailActivity extends AppCompatActivity implements OnMapReady
                 Marker myMarker = map.addMarker(markerOptions);
                 LatLngBounds.Builder builder = new LatLngBounds.Builder().include(marker.getPosition()).include(myMarker.getPosition());
                 map.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 15));
+                /*LatLng origin = myMarker.getPosition();
+                LatLng dest = marker.getPosition();
+                String url = getDirectionsUrl(origin, dest);*/
             }
         });
-        /*Marker marker = map.addMarker(new MarkerOptions().position(getLocationFromAddress(this, kroeg.getAdres())).title(kroeg.getNaam()));
-
-        LatLngBounds.Builder builder = new LatLngBounds.Builder().include(marker.getPosition()).include();
-        int padding = 5;
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        map.animateCamera(cu);*/
     }
+
+   /* private String getDirectionsUrl(LatLng origin, LatLng dest){
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        String sensor = "sensor=false";
+        String parameters = str_origin+"&"+str_dest+"&"+sensor;
+        String output = "json";
+        return "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
+    }*/
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 

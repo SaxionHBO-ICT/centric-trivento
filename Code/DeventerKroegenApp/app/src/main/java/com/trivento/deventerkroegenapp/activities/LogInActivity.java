@@ -24,7 +24,7 @@ public class LogInActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        boolean loggedIn = checkLogin();
+        final boolean loggedIn = checkLogin();
         if(loggedIn){
             Toast.makeText(LogInActivity.this, "Er is al ingelogd", Toast.LENGTH_SHORT).show();
             finish();
