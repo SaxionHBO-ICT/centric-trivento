@@ -12,12 +12,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -28,7 +25,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.trivento.deventerkroegenapp.R;
 import com.trivento.deventerkroegenapp.model.Kroeg;
-import com.trivento.deventerkroegenapp.util.Reference;
 
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
@@ -81,12 +77,15 @@ public class KroegDetailActivity extends AppCompatActivity implements OnMapReady
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                map.clear();
-                Marker marker = map.addMarker(new MarkerOptions().position(getLocationFromAddress(getApplicationContext(), kroeg.getAdres())).title(kroeg.getNaam()));
-                MarkerOptions markerOptions =  new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).alpha(0f);
-                Marker myMarker = map.addMarker(markerOptions);
-                LatLngBounds.Builder builder = new LatLngBounds.Builder().include(marker.getPosition()).include(myMarker.getPosition());
-                map.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 15));
+                LatLng kroegLoc = getLocationFromAddress(getApplicationContext(), kroeg.getAdres());
+                if (kroegLoc != null) {
+                    map.clear();
+                    Marker marker = map.addMarker(new MarkerOptions().position(kroegLoc).title(kroeg.getNaam()));
+                    MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).alpha(0f);
+                    Marker myMarker = map.addMarker(markerOptions);
+                    LatLngBounds.Builder builder = new LatLngBounds.Builder().include(marker.getPosition()).include(myMarker.getPosition());
+                    map.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 15));
+                }
                 /*LatLng origin = myMarker.getPosition();
                 LatLng dest = marker.getPosition();
                 String url = getDirectionsUrl(origin, dest);*/
