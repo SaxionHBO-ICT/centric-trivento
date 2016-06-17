@@ -6,9 +6,11 @@ package com.trivento.deventerkroegenapp.util;
 public class Reference {
 
     public static final String TAG = "DeventerKroegenAPP";
-    public static final String DATABASE_URL = "jdbc:mysql:eu-cdbr-azure-west-d.cloudapp.net;Database=deventerkroegen;User=bff895cf4b4f0c;Password=7dfc2fe3";
+    public static final String LOCATION = "com.trivento.deventerkroegenapp";
 
-    public static final String DATABASE_USERNAME = "adminsaxion";
-    public static final String DATABASE_PASSWORD = "Root12345";
-
+    public static String USERNAME = "com.trivento.deventerkroegenapp.username";
+    public static String PASSWORD = "com.trivento.deventerkroegenapp.password";
+    public static boolean TIMER_LOGOUT = false;
+    public static boolean loginAccepted = false;
+    public static boolean shouldTimerContinue = true;
 }

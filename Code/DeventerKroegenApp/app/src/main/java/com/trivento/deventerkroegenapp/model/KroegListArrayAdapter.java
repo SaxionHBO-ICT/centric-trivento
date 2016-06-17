@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -35,9 +36,22 @@ public class KroegListArrayAdapter extends ArrayAdapter<Kroeg>{
         tvName.setText(kroeg.getNaam());
         TextView tvDescShort = (TextView) view.findViewById(R.id.tv_desc_short);
         tvDescShort.setText(kroeg.getBeschrijving());
+        ImageView ivAvatar = (ImageView) view.findViewById(R.id.iv_avatar);
+        String categorie = kroeg.getCategorie();
+        switch (categorie.toLowerCase()){
+            case "eetcafé": ivAvatar.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_eetcafe));
+                break;
+            case "bier": ivAvatar.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_bier));
+                break;
+            case "bruin café": ivAvatar.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_bruin_cafe));
+                break;
+            case "muziek": ivAvatar.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_muziek));
+                break;
+            default: ivAvatar.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_grand_cafe));
+        }
 
         RatingBar rbRating = (RatingBar) view.findViewById(R.id.rb_li_rating);
-        rbRating.setRating(kroeg.getKroeg_id()/2);
+        rbRating.setRating(kroeg.getRating());
 
         return view;
     }

@@ -1,8 +1,10 @@
 package com.trivento.deventerkroegenapp.tasks;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.view.Menu;
-import android.view.View;
+import android.view.MenuItem;
+import android.view.SubMenu;
 
 import com.trivento.deventerkroegenapp.R;
 
@@ -19,16 +21,18 @@ import java.net.URL;
 /**
  * Created by Sliomere on 07/06/2016.
  */
-public class CategoryTask extends AsyncTask<View, Void, JSONArray> {
+public class CategoryTask extends AsyncTask<Void, Void, JSONArray> {
 
     private Menu menu;
+    private Context context;
 
-    public CategoryTask(Menu menu) {
+    public CategoryTask(Menu menu, Context context) {
         this.menu = menu;
+        this.context = context;
     }
 
     @Override
-    protected JSONArray doInBackground(View... params) {
+    protected JSONArray doInBackground(Void... params) {
         JSONArray jsonArray = null;
         try {
             URL url = new URL("http://deventerkroegenappsql.azurewebsites.net/categories.php");
@@ -56,11 +60,16 @@ public class CategoryTask extends AsyncTask<View, Void, JSONArray> {
     @Override
     protected void onPostExecute(JSONArray jsonArray) {
         if (jsonArray != null) {
-            menu.add(R.id.categories, 1, Menu.FIRST, "Alles");
+            MenuItem login = menu.getItem(0);
+            menu.clear();
+            MenuItem loginNew = menu.add(login.getGroupId(), login.getItemId(), login.getOrder(), login.getTitle());
+            loginNew.setIcon(context.getResources().getDrawable(R.drawable.ic_action_login));
+            SubMenu subMenu = menu.addSubMenu(1, 0, Menu.FLAG_APPEND_TO_GROUP, "Categorieën");
+            subMenu.add("Alles");
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     JSONObject object = jsonArray.getJSONObject(i);
-                    menu.add(R.id.categories, i+2, Menu.FLAG_APPEND_TO_GROUP, object.getString("categorie"));
+                    subMenu.add(1, i+1, Menu.FLAG_APPEND_TO_GROUP, object.getString("categorie"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

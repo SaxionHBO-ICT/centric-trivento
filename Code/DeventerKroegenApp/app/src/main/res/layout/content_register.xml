@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.trivento.deventerkroegenapp.activities.RegisterActivity"
+    tools:showIn="@layout/activity_register">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/et_voornaam"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint="Voornaam" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/et_achternaam"
+        android:layout_below="@+id/et_voornaam"
+        android:layout_centerHorizontal="true"
+        android:hint="Achternaam" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/et_adres"
+        android:layout_below="@+id/et_achternaam"
+        android:layout_alignEnd="@+id/et_achternaam"
+        android:hint="Adres" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_postcode"
+        android:layout_below="@+id/et_adres"
+        android:layout_alignStart="@+id/et_adres"
+        android:layout_alignEnd="@+id/et_adres"
+        android:hint="Postcode"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_woonplaats"
+        android:layout_below="@+id/et_postcode"
+        android:hint="Woonplaats"
+        android:layout_alignEnd="@+id/et_postcode"
+        android:layout_alignStart="@+id/et_postcode"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_land"
+        android:layout_below="@+id/et_woonplaats"
+        android:hint="Land"
+        android:layout_alignStart="@+id/et_woonplaats"
+        android:layout_alignEnd="@+id/et_woonplaats"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/et_mail"
+        android:layout_below="@+id/et_land"
+        android:layout_centerHorizontal="true"
+        android:hint="E-mail" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/et_wachtwoord"
+        android:layout_below="@+id/et_mail"
+        android:layout_centerHorizontal="true"
+        android:hint="Wachtwoord" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/et_wachtwoordcheck"
+        android:layout_below="@+id/et_wachtwoord"
+        android:layout_centerHorizontal="true"
+        android:hint="Wachtwoord (opnieuw)" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registreer"
+        android:id="@+id/btn_register"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/et_wachtwoordcheck"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

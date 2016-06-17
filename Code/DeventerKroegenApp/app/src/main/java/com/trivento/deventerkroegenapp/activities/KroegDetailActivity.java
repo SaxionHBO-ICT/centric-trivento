@@ -1,39 +1,31 @@
 package com.trivento.deventerkroegenapp.activities;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.trivento.deventerkroegenapp.R;
 import com.trivento.deventerkroegenapp.model.Kroeg;
+import com.trivento.deventerkroegenapp.tasks.GetAvatarTask;
+import com.trivento.deventerkroegenapp.tasks.MapsTask;
+import com.trivento.deventerkroegenapp.tasks.UpdateRatingTask;
 
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
-
-import java.util.List;
 
 public class KroegDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private Kroeg kroeg;
     private GoogleMap map;
+    private RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +36,13 @@ public class KroegDetailActivity extends AppCompatActivity implements OnMapReady
 
         kroeg = (Kroeg) getIntent().getSerializableExtra("KROEG");
 
-        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
         ctl.setTitle(kroeg.getNaam());
 
-        String drawable = "kroeg";
-        ctl.setBackground(ContextCompat.getDrawable(this, getResources().getIdentifier(drawable, "drawable", getPackageName())));
+        GetAvatarTask getAvatarTask = new GetAvatarTask(ctl, this);
+        getAvatarTask.execute(kroeg.getKroeg_id());
+
+        setTitle(kroeg.getNaam());
 
         TextView tvDesc = (TextView) findViewById(R.id.tv_desc);
         tvDesc.setText(kroeg.getBeschrijving());
@@ -59,9 +53,14 @@ public class KroegDetailActivity extends AppCompatActivity implements OnMapReady
         TextView tvURL = (TextView) findViewById(R.id.tv_url);
         tvURL.setText(kroeg.getURL());
 
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.rating_detail);
-        Drawable ratingBarDrawable = ratingBar.getProgressDrawable();
-        ratingBarDrawable.setColorFilter(Color.parseColor("#F99D2C"), PorterDuff.Mode.SRC_ATOP);
+        ratingBar = (RatingBar) findViewById(R.id.rating_detail);
+        ratingBar.setRating(kroeg.getRating());
+
+        if(LogInActivity.checkLogin(this, false)){
+            ratingBar.setEnabled(true);
+        } else {
+            ratingBar.setEnabled(false);
+        }
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragment_maps);
         mapFragment.getMapAsync(this);
@@ -69,61 +68,28 @@ public class KroegDetailActivity extends AppCompatActivity implements OnMapReady
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.save){
+            float rating = ratingBar.getRating();
+            UpdateRatingTask updateRatingTask = new UpdateRatingTask();
+            updateRatingTask.execute(String.valueOf(rating), "2", String.valueOf(kroeg.getKroeg_id()));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.detail_menu, menu);
+        return true;
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.map = googleMap;
-        map.setMyLocationEnabled(true);
-        map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                LatLng kroegLoc = getLocationFromAddress(getApplicationContext(), kroeg.getAdres());
-                if (kroegLoc != null) {
-                    map.clear();
-                    Marker marker = map.addMarker(new MarkerOptions().position(kroegLoc).title(kroeg.getNaam()));
-                    MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).alpha(0f);
-                    Marker myMarker = map.addMarker(markerOptions);
-                    LatLngBounds.Builder builder = new LatLngBounds.Builder().include(marker.getPosition()).include(myMarker.getPosition());
-                    map.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 15));
-                }
-                /*LatLng origin = myMarker.getPosition();
-                LatLng dest = marker.getPosition();
-                String url = getDirectionsUrl(origin, dest);*/
-            }
-        });
-    }
-
-   /* private String getDirectionsUrl(LatLng origin, LatLng dest){
-        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-        String sensor = "sensor=false";
-        String parameters = str_origin+"&"+str_dest+"&"+sensor;
-        String output = "json";
-        return "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
-    }*/
-
-    public LatLng getLocationFromAddress(Context context, String strAddress) {
-
-        Geocoder coder = new Geocoder(context);
-        List<Address> address;
-        LatLng p1 = null;
-
-        try {
-            address = coder.getFromLocationName(strAddress, 5);
-            if (address == null) {
-                return null;
-            }
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            p1 = new LatLng(location.getLatitude(), location.getLongitude());
-
-        } catch (Exception ex) {
-
-            ex.printStackTrace();
-        }
-
-        return p1;
+        MapsTask mapsTask = new MapsTask(map, this);
+        mapsTask.execute(kroeg.getAdres(), kroeg.getNaam());
     }
 }

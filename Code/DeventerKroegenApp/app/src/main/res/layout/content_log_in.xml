@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/et_password"
+        android:id="@+id/et_wachtwoord"
         android:layout_below="@+id/et_username"
         android:layout_centerHorizontal="true"
         android:hint="@string/password" />
@@ -35,14 +35,14 @@
         android:layout_height="wrap_content"
         android:text="@string/action_login"
         android:id="@+id/btn_login"
-        android:layout_below="@+id/et_password"
+        android:layout_below="@+id/et_wachtwoord"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        android:id="@+id/textView2"
+        android:id="@+id/tv_register"
         android:textSize="20sp"
         android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"

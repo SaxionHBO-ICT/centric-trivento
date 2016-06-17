@@ -6,38 +6,13 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_action_login"
             android:title="@string/action_login" />
-        <item
-            android:id="@+id/nav_search"
-            android:icon="@android:drawable/ic_search_category_default"
-            android:title="@string/search"/>
     </group>
 
     <item android:title="@string/title_category">
         <menu>
-            <group android:checkableBehavior="single" android:id="@+id/categories">
-                <!-- TODO edit this programmatically, not manually -->
-               <!--<item
-                    android:id="@+id/nav_cat_1"
-                    android:title="@string/categorie_1" />
-               <item
-                    android:id="@+id/nav_cat_2"
-                    android:title="@string/categorie_2" />
-                <item
-                    android:id="@+id/nav_cat_3"
-                    android:title="@string/categorie_3" />
-                <item
-                    android:id="@+id/nav_cat_4"
-                    android:title="Categorie 4" />
-                <item
-                    android:id="@+id/nav_cat_5"
-                    android:title="Categorie 5" />
-                <item
-                    android:id="@+id/nav_cat_6"
-                    android:title="Categorie 6" />
-                <item
-                    android:id="@+id/nav_cat_7"
-                    android:title="Categorie 7" />-->
-            </group>
+            <!--<group android:checkableBehavior="single" android:id="@+id/categories">
+                <item android:title="Alles"/>
+            </group>-->
         </menu>
     </item>
 

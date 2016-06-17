@@ -4,8 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -41,12 +40,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.trivento.deventerkroegenapp.activities.MainKroegListActivity" />
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCXQ4kE1AVD9bNPHpU5LPl4Ope5gB-EGS4"/>
+            android:value="AIzaSyCXQ4kE1AVD9bNPHpU5LPl4Ope5gB-EGS4" />
+
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".activities.LogInActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.trivento.deventerkroegenapp.activities.LogInActivity" />
+        </activity>
     </application>
 
 </manifest>

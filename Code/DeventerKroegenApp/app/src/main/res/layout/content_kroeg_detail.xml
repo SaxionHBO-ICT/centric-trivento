@@ -13,27 +13,13 @@
     tools:showIn="@layout/activity_kroeg_detail">
 
 
-    <RatingBar
-        android:id="@+id/rating_detail"
-        style="?android:attr/ratingBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressTint="#f99d2c"
-        android:rating="2"
-        android:secondaryProgressTint="#c21111"
-        android:stepSize="0.5" />
-
     <View
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_alignParentStart="true"
+        android:background="@android:color/darker_gray"
         android:layout_below="@+id/rating_detail"
-        android:background="@android:color/darker_gray" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/tv_desc"
@@ -133,5 +119,18 @@
         android:layout_below="@+id/space5"
         android:id="@+id/fragment_maps"
         android:name="com.google.android.gms.maps.MapFragment"/>
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating_detail"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:rating="4"
+        android:stepSize="0.5"
+        android:numStars="5"
+        android:progressTint="#f99d2c"
+        android:progressBackgroundTint="#6cf99d2c"
+        android:secondaryProgressTint="#f99d2c" />
 
 </RelativeLayout>

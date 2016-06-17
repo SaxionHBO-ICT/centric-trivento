@@ -1,7 +1,9 @@
 package com.trivento.deventerkroegenapp.model;
 
-import com.trivento.deventerkroegenapp.tasks.ConnectionTask;
+import com.trivento.deventerkroegenapp.tasks.KroegenTask;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +20,18 @@ public class KroegData {
     }
 
     public static void searchData(String category){
-        ConnectionTask connectionTask = new ConnectionTask(kroegen);
-        connectionTask.execute(category);
+        try {
+            category = URLEncoder.encode(category, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        KroegenTask kroegenTask = new KroegenTask(kroegen);
+        kroegenTask.execute(category);
     }
 
     public static void searchData(){
-        ConnectionTask connectionTask = new ConnectionTask(kroegen);
-        connectionTask.execute();
+        KroegenTask kroegenTask = new KroegenTask(kroegen);
+        kroegenTask.execute();
     }
 
     public static KroegData getInstance() {
