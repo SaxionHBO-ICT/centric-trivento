@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sliomere on 12/05/2016.
+ * Class waarin de data van de kroegen wordt bewaard
  */
 public class KroegData {
 
@@ -19,6 +19,7 @@ public class KroegData {
         searchData();
     }
 
+    //Zoek alle kroegen uit 1 categorie
     public static void searchData(String category){
         try {
             category = URLEncoder.encode(category, "UTF-8");
@@ -29,6 +30,7 @@ public class KroegData {
         kroegenTask.execute(category);
     }
 
+    //Zoek alle kroegen
     public static void searchData(){
         KroegenTask kroegenTask = new KroegenTask(kroegen);
         kroegenTask.execute();

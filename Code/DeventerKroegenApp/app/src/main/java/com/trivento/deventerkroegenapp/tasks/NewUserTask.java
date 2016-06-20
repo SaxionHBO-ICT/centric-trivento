@@ -14,13 +14,14 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-/**
- * Created by Sliomere on 15/06/2016.
- */
 public class NewUserTask extends AsyncTask<String, Void, Boolean> {
 
     private Activity activity;
 
+    /**
+     * Task voor het aanmaken van een nieuwe gebruiker
+     * @param activity De activity vanuit waar de task wordt aangeroepen
+     */
     public NewUserTask(Activity activity) {
         this.activity = activity;
     }
@@ -36,6 +37,7 @@ public class NewUserTask extends AsyncTask<String, Void, Boolean> {
         String mail = params[6];
         String wachtwoord = params[7];
 
+        //Maak de POST request voor het aanmaken van een gebruiker
         try {
             URL url = new URL("http://deventerkroegenappsql.azurewebsites.net/newUser.php");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -68,7 +70,6 @@ public class NewUserTask extends AsyncTask<String, Void, Boolean> {
                 if(body.contains("success")){
                     connection.disconnect();
                     return true;
-                } else {
                 }
             }
             connection.disconnect();

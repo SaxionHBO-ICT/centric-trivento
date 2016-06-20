@@ -23,31 +23,45 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by Sliomere on 07/06/2016.
- */
 public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     private boolean showToast;
     private Activity activity;
     private Context context;
     private boolean accepted;
+    private String gebruikerId;
     private String username;
     private String password;
     private boolean isMD5Already = false;
 
+    /**
+     * Taks voor het inloggen van een gebruiker
+     * @param context de context van de applicatie
+     * @param isMD5Already Voor het geval dat er alleen gechecked moet worden of de inloggegevens kloppen en het wachtwoord dus al md5 is
+     * @param showToast Of er een toast moet worden gemaakt of het inloggen succesvol is of niet
+     */
     public LoginTask(Context context, boolean isMD5Already, boolean showToast) {
         this.context = context;
         this.isMD5Already = isMD5Already;
         this.showToast = showToast;
     }
 
+    /**
+     * @param activity De Activity waarvandaan de task wordt gerunt, zodat die kan worden afgesloten
+     * @param showToast Of er een toast moet worden gemaakt of het inloggen succesvol is of niet
+     */
     public LoginTask(Activity activity, boolean showToast) {
         this.activity = activity;
         this.context = activity.getApplicationContext();
         this.showToast = showToast;
     }
 
+    /**
+     * MD5 algoritme voor de input string
+     * Source: http://stackoverflow.com/questions/4846484/md5-hashing-in-android
+     * @param s De input string
+     * @return MD5 versie van de input string
+     */
     public static String md5(final String s) {
         final String MD5 = "MD5";
         try {
@@ -84,6 +98,7 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
         Log.d(Reference.TAG, "doInBackground: running task");
 
+        //Maak de POST request om te kijken of de inloggegevens kloppen
         try {
             URL url = new URL("http://deventerkroegenappsql.azurewebsites.net/checkLogin.php");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -108,6 +123,7 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
                 JSONObject jsonObject = new JSONObject(jsonString);
                 accepted = jsonObject.getBoolean("accepted");
+                gebruikerId = jsonObject.getString("gebruiker_id");
             }
             connection.disconnect();
         } catch (IOException | JSONException e) {
@@ -120,14 +136,17 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         Reference.loginAccepted = accepted;
+        //Als het inloggen succesvol is, sla username, password en gebruikersid op in de SharedPreferences en maak eventueel een toast
         if (accepted) {
             SharedPreferences sharedPreferences = context.getSharedPreferences(Reference.LOCATION, Context.MODE_PRIVATE);
             sharedPreferences.edit().putString(Reference.USERNAME, username).apply();
             sharedPreferences.edit().putString(Reference.PASSWORD, password).apply();
+            sharedPreferences.edit().putString(Reference.GEBRUIKERID, gebruikerId).apply();
             if (activity != null) {
                 if(showToast) {
                     Toast.makeText(activity, "Login geslaagd", Toast.LENGTH_SHORT).show();
                 }
+                //Sluit de activity af als dat nodig is
                 activity.finish();
             } else if(showToast){
                 Toast.makeText(context, "Login geslaagd", Toast.LENGTH_SHORT).show();

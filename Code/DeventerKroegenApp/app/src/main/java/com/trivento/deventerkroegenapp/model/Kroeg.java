@@ -3,7 +3,7 @@ package com.trivento.deventerkroegenapp.model;
 import java.io.Serializable;
 
 /**
- * Created by Sliomere on 12/05/2016.
+ * Class met alle informatie over een kroeg
  */
 public class Kroeg implements Serializable{
 

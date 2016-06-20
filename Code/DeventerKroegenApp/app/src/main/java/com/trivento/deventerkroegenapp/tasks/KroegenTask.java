@@ -17,17 +17,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-/**
- * Created by Sliomere on 30/05/2016.
- */
 public class KroegenTask extends AsyncTask<String, Void, Void> {
 
     private List<Kroeg> kroegen;
 
+    /**
+     * Task die óf alle kroegen ophaalt, óf alle kroegen uit 1 categorie ophaalt
+     * @param kroegen De lijst waar de kroegen in moeten komen te staan
+     */
     public KroegenTask(List<Kroeg> kroegen){
         this.kroegen = kroegen;
     }
 
+    //Leeg de lijst, zodat er geen dubbele kroegen in komen te staan
     @Override
     protected void onPreExecute() {
         KroegData.kroegen.clear();
@@ -46,6 +48,7 @@ public class KroegenTask extends AsyncTask<String, Void, Void> {
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
 
+            //Haal alle informatie uit JSON en maak daar kroeg objecten van, die in de list worden gestopt
             int responseCode = connection.getResponseCode();
             if(responseCode == 200){
                 InputStream is = connection.getInputStream();
@@ -95,6 +98,7 @@ public class KroegenTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
+        //Notify de adapter dat de inhoud is veranderd
         KroegListFragment.notifyDataSetChanged();
     }
 }

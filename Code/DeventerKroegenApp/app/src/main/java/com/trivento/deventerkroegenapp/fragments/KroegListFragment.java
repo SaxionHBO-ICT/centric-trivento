@@ -22,6 +22,9 @@ public class KroegListFragment extends ListFragment {
     public static KroegListArrayAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    /**
+     * De Fragment met de lijst met kroegen
+     */
     public KroegListFragment() {
     }
 
@@ -33,6 +36,7 @@ public class KroegListFragment extends ListFragment {
         setListAdapter(adapter);
     }
 
+    //Open de DetailActivity op het moment dat er op een listItem geklikt wordt
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
@@ -44,10 +48,13 @@ public class KroegListFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kroeg_list, container, false);
+
+        //De SwipeRefreshLayout zorgt ervoor dat de lijst gerefreshed kan worden door de lijst omlaag te trekken
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                //Refresh de lijst
                 swipeRefreshLayout.setRefreshing(true);
                 KroegData.searchData();
                 NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
@@ -64,6 +71,9 @@ public class KroegListFragment extends ListFragment {
         super.onAttach(activity);
     }
 
+    /**
+     * Waarschuw de adapter dat de data is veranderd
+     */
     public static void notifyDataSetChanged() {
         adapter.notifyDataSetChanged();
     }

@@ -18,14 +18,16 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by Sliomere on 07/06/2016.
- */
 public class CategoryTask extends AsyncTask<Void, Void, JSONArray> {
 
     private Menu menu;
     private Context context;
 
+    /**
+     * Task voor het ophalen van alle categorieën
+     * @param menu Het menu waar de items in moeten worden geplaatst
+     * @param context De context van de applicatie
+     */
     public CategoryTask(Menu menu, Context context) {
         this.menu = menu;
         this.context = context;
@@ -60,10 +62,13 @@ public class CategoryTask extends AsyncTask<Void, Void, JSONArray> {
     @Override
     protected void onPostExecute(JSONArray jsonArray) {
         if (jsonArray != null) {
+            //Aangezien het login-item er altijd moet zijn met hetzelfde id etc, haalen we deze eerst op voordat we het menu legen
             MenuItem login = menu.getItem(0);
             menu.clear();
+            //Maak een nieuw loginItem aan
             MenuItem loginNew = menu.add(login.getGroupId(), login.getItemId(), login.getOrder(), login.getTitle());
             loginNew.setIcon(context.getResources().getDrawable(R.drawable.ic_action_login));
+            //Maak een Submenu met de verschillende categorieën uit de jsonArray aan met als eerste item "Alles"
             SubMenu subMenu = menu.addSubMenu(1, 0, Menu.FLAG_APPEND_TO_GROUP, "Categorieën");
             subMenu.add("Alles");
             for (int i = 0; i < jsonArray.length(); i++) {

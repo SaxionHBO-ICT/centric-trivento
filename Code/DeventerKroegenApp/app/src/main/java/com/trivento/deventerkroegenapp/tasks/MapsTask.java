@@ -15,9 +15,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-/**
- * Created by Sliomere on 15/06/2016.
- */
 public class MapsTask extends AsyncTask<String, Void, String[]> {
 
     private GoogleMap map;
@@ -33,6 +30,13 @@ public class MapsTask extends AsyncTask<String, Void, String[]> {
         return new String[]{params[0], params[1]};
     }
 
+    /**
+     * Haal de LatLng op van een adres
+     * Source: http://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address
+     * @param context de context van de applicatie
+     * @param strAddress Het adres
+     * @return De LatLng die bij het adres horen
+     */
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
@@ -63,6 +67,9 @@ public class MapsTask extends AsyncTask<String, Void, String[]> {
         final String adres = params[0];
         final String naam = params[1];
         map.setMyLocationEnabled(true);
+        /**
+         * Zet 1 marker bij de kroeg, een andere (doorzichtige) marker op "mijn locatie" en zoom in binnen de bounds van die 2 markers
+         */
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {

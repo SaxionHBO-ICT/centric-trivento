@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by Sliomere on 15/06/2016.
+ * Een task voor het updaten van een rating van een gebruiker
  */
 public class UpdateRatingTask extends AsyncTask<String, Void, Void> {
     @Override
@@ -19,6 +19,7 @@ public class UpdateRatingTask extends AsyncTask<String, Void, Void> {
         int userId = Integer.parseInt(params[1]);
         int kroegId = Integer.parseInt(params[2]);
 
+        //Maak de HttpURLRequest naar de link zodat de rating geüpdate wordt
         try {
             URL url = new URL("http://deventerkroegenappsql.azurewebsites.net/addRating.php?rating=" + rating + "&gebruikersid=" + userId + "&kroegid=" + kroegId);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -27,12 +28,7 @@ public class UpdateRatingTask extends AsyncTask<String, Void, Void> {
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
 
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                InputStream is = connection.getInputStream();
-                String body = IOUtils.toString(is, "UTF-8");
-                IOUtils.closeQuietly(is);
-            }
+            connection.getResponseCode();
             connection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();

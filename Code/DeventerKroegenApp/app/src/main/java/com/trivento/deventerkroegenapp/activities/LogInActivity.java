@@ -16,6 +16,9 @@ import com.trivento.deventerkroegenapp.R;
 import com.trivento.deventerkroegenapp.tasks.LoginTask;
 import com.trivento.deventerkroegenapp.util.Reference;
 
+/**
+ * Een Activity voor het inloggen van een gebruiker
+ */
 public class LogInActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +30,7 @@ public class LogInActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences(Reference.LOCATION, MODE_PRIVATE);
 
+        //Als er al is ingelogd en er dus informatie in de SharedPreferences staat, log eerst uit (verwijder die informatie)
         if(sharedPreferences.getString(Reference.USERNAME, null) != null){
             Toast.makeText(this, "Uitgelogd", Toast.LENGTH_SHORT).show();
             sharedPreferences.edit().remove(Reference.USERNAME).apply();
@@ -50,6 +54,7 @@ public class LogInActivity extends AppCompatActivity {
             });
         }
 
+        //Als er op registreren wordt geklikt, open die activity
         TextView tvRegister = (TextView) findViewById(R.id.tv_register);
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +67,12 @@ public class LogInActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Kijk of de huidige logingevens kloppen
+     * @param context De context van de applicatie
+     * @param showToast Of er een toast getoond moet worden of niet
+     * @return true als de gegevens kloppen, anders false
+     */
     public static boolean checkLogin(Context context, boolean showToast) {
         String username, password;
         SharedPreferences sharedPreferences = context.getSharedPreferences(Reference.LOCATION, MODE_PRIVATE);

@@ -48,13 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String mail = etMail.getText().toString();
                 String wachtwoord = null;
                 String wachtwoordCheck = null;
-                try {
-                    wachtwoord = md5(etWachtwoord.getText().toString());
-                    wachtwoordCheck = md5(etWachtwoordCheck.getText().toString());
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
+                wachtwoord = md5(etWachtwoord.getText().toString());
+                wachtwoordCheck = md5(etWachtwoordCheck.getText().toString());
 
+                //Als de wachtwoordCheck overeen komt, run de task voor het aanmaken van een gebruiker
                 if(wachtwoord.equals(wachtwoordCheck)){
                     NewUserTask newUserTask = new NewUserTask(RegisterActivity.this);
                     newUserTask.execute(voornaam, achternaam, adres, postcode, woonplaats, land, mail, wachtwoord);
@@ -67,17 +64,35 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private String md5(String input) throws NoSuchAlgorithmException {
-        MessageDigest m = MessageDigest.getInstance("MD5");
-        m.reset();
-        m.update(input.getBytes());
-        byte[] digest = m.digest();
-        BigInteger bigInt = new BigInteger(1,digest);
-        String hashtext = bigInt.toString(16);
-        while(hashtext.length() < 32 ){
-            hashtext = "0"+hashtext;
+    /**
+     * Maak een md5 Versie van het wachtwoord
+     * Source: http://stackoverflow.com/questions/4846484/md5-hashing-in-android
+     * @param s De input string
+     * @return MD5 versie van de input string
+     */
+    private String md5(String s) {
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest
+                    .getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
-        return hashtext;
+        return "";
     }
 
 }

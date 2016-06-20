@@ -19,14 +19,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 
-/**
- * Created by Sliomere on 17/06/2016.
- */
 public class GetAvatarTask extends AsyncTask<Integer, Void, Drawable>{
 
     private CollapsingToolbarLayout ctl;
     private Context context;
 
+    /**
+     * Class die de avatar van een kroeg uit een HttpURLRequest haalt (te zien in de detailActivity)
+     * @param ctl De CollapsingToolbarLayout waarin de avatar als background functioneerd
+     * @param context De context van de app
+     */
     public GetAvatarTask(CollapsingToolbarLayout ctl, Context context) {
         this.ctl = ctl;
         this.context = context;
@@ -41,6 +43,7 @@ public class GetAvatarTask extends AsyncTask<Integer, Void, Drawable>{
             connection.connect();
             InputStream input = connection.getInputStream();
 
+            //De avatar wordt in Base64 doorgegeven door de server, dus wordt hier omgezet in een byteArray en daarna in een Drawable, die als achtergrond wordt gebruikt
             String body = IOUtils.toString(input, "UTF-8");
             byte[] decodedString = Base64.decode(body.getBytes(), Base64.DEFAULT);
             Drawable drawable = new BitmapDrawable(context.getResources(), BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
@@ -55,7 +58,6 @@ public class GetAvatarTask extends AsyncTask<Integer, Void, Drawable>{
 
     @Override
     protected void onPostExecute(Drawable avatar) {
-        Log.d(Reference.TAG, "onPostExecute: Ding");
         ctl.setBackground(avatar);
     }
 }
