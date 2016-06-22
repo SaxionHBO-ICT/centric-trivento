@@ -45,8 +45,6 @@ public class MainKroegListActivity extends AppCompatActivity
         Resources res = getResources();
         String usernameNavBar = res.getString(R.string.user_not_logged_in);
 
-        //TODO check if user logged in here and edit username
-        //WARNING https://code.google.com/p/android/issues/detail?id=190226 Headerview may not work as expected...
         View header = navigationView.getHeaderView(0);
 
         CategoryTask categoryTask = new CategoryTask(navigationView.getMenu(), this);

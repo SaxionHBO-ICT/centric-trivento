@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.trivento.deventerkroegenapp</OriginalElement>
+  <nodes>
+    <node x="748.0" y="443.0">com.trivento.deventerkroegenapp.model.KroegListArrayAdapter</node>
+    <node x="321.5" y="708.0">com.trivento.deventerkroegenapp.activities.KroegDetailActivity</node>
+    <node x="1128.0" y="1101.0">com.trivento.deventerkroegenapp.tasks.KroegenTask</node>
+    <node x="1413.0" y="-30.0">com.trivento.deventerkroegenapp.activities.MainKroegListActivity</node>
+    <node x="695.5" y="1359.5">com.trivento.deventerkroegenapp.util.Reference</node>
+    <node x="64.0" y="1363.5">com.trivento.deventerkroegenapp.activities.LogInActivity</node>
+    <node x="1413.0" y="730.0">com.trivento.deventerkroegenapp.model.KroegData</node>
+    <node x="329.0" y="970.0">com.trivento.deventerkroegenapp.tasks.MapsTask</node>
+    <node x="-17.5" y="1504.0">com.trivento.deventerkroegenapp.tasks.LoginTask</node>
+    <node x="622.5" y="598.0">com.trivento.deventerkroegenapp.model.Kroeg</node>
+    <node x="433.0" y="1512.0">com.trivento.deventerkroegenapp.tasks.NewUserTask</node>
+    <node x="424.0" y="1363.5">com.trivento.deventerkroegenapp.activities.RegisterActivity</node>
+    <node x="751.0" y="-19.0">com.trivento.deventerkroegenapp.tasks.CategoryTask</node>
+    <node x="672.5" y="188.0">com.trivento.deventerkroegenapp.fragments.KroegListFragment</node>
+    <node x="-10.5" y="741.0">com.trivento.deventerkroegenapp.tasks.GetAvatarTask</node>
+    <node x="332.0" y="574.5">com.trivento.deventerkroegenapp.tasks.UpdateRatingTask</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.trivento.deventerkroegenapp.fragments.KroegListFragment" target="com.trivento.deventerkroegenapp.model.KroegListArrayAdapter">
+      <point x="0.0" y="92.0" />
+      <point x="0.0" y="-37.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.MainKroegListActivity" target="com.trivento.deventerkroegenapp.tasks.CategoryTask">
+      <point x="-107.0" y="-0.0" />
+      <point x="89.0" y="-0.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.MainKroegListActivity" target="com.trivento.deventerkroegenapp.model.KroegData">
+      <point x="0.0" y="70.0" />
+      <point x="0.0" y="-70.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.model.KroegListArrayAdapter" target="com.trivento.deventerkroegenapp.model.Kroeg">
+      <point x="0.0" y="37.0" />
+      <point x="0.0" y="-202.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.KroegDetailActivity" target="com.trivento.deventerkroegenapp.model.Kroeg">
+      <point x="118.5" y="-0.0" />
+      <point x="-217.5" y="-0.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.fragments.KroegListFragment" target="com.trivento.deventerkroegenapp.tasks.CategoryTask">
+      <point x="0.0" y="-92.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.LogInActivity" target="com.trivento.deventerkroegenapp.tasks.LoginTask">
+      <point x="0.0" y="36.5" />
+      <point x="0.0" y="-136.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.KroegDetailActivity" target="com.trivento.deventerkroegenapp.tasks.MapsTask">
+      <point x="0.0" y="92.0" />
+      <point x="0.0" y="-70.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.RegisterActivity" target="com.trivento.deventerkroegenapp.tasks.NewUserTask">
+      <point x="0.0" y="36.5" />
+      <point x="0.0" y="-48.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.KroegDetailActivity" target="com.trivento.deventerkroegenapp.tasks.UpdateRatingTask">
+      <point x="0.0" y="-92.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.model.KroegData" target="com.trivento.deventerkroegenapp.tasks.KroegenTask">
+      <point x="0.0" y="70.0" />
+      <point x="1520.0" y="1160.0" />
+      <point x="112.0" y="-0.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.tasks.KroegenTask" target="com.trivento.deventerkroegenapp.model.Kroeg">
+      <point x="-112.0" y="-0.0" />
+      <point x="840.0" y="1160.0" />
+      <point x="0.0" y="202.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.activities.KroegDetailActivity" target="com.trivento.deventerkroegenapp.tasks.GetAvatarTask">
+      <point x="-118.5" y="-0.0" />
+      <point x="130.5" y="-0.0" />
+    </edge>
+    <edge source="com.trivento.deventerkroegenapp.model.KroegData" target="com.trivento.deventerkroegenapp.model.Kroeg">
+      <point x="-107.0" y="-0.0" />
+      <point x="217.5" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9586206896551721" x="789.6151079136694" y="1050.651079136691" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
